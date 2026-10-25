@@ -1,0 +1,620 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="RASMA — Make Every Proposal Count. A product by Collect.">
+<meta name="theme-color" content="#1d2740">
+<meta name="color-scheme" content="light">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="icon" href="icon-192.png">
+<title>RASMA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Noto+Kufi+Arabic:wght@600;700;800&family=Unbounded:wght@600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Layout (Collect standard): thin navy bar with a gold line (mark, name, signature, licence badge, language). Light page; three numbered steps and a sticky price sheet. Demo works with limits; activation sheet opens on demand. */
+:root{color-scheme:light;
+  --bg:#f1f2f6; --paper:#ffffff; --ink:#141c2e; --muted:#5a6377; --rule:#dcdfe8;
+  --navy:#1d2740; --navy-2:#27345a; --on-navy:#eef1f8; --on-navy-muted:#aab4cc;
+  --brand:#24427d; --brand-soft:#e5ebf7; --gold:#c08a2e; --gold-soft:#f7eedd;
+  --good:#1e7a4f; --warn:#b5651d; --bad:#b4342f;
+  --f-ar-display:"Noto Kufi Arabic","IBM Plex Sans Arabic",Tahoma,sans-serif;
+  --f-ar-body:"IBM Plex Sans Arabic",Tahoma,"Segoe UI",sans-serif;
+  --f-en-display:"Unbounded","IBM Plex Sans","Segoe UI",sans-serif;
+  --f-en-body:"IBM Plex Sans","Segoe UI",Roboto,sans-serif;
+  --f-num:"IBM Plex Mono","IBM Plex Sans Arabic",ui-monospace,Menlo,monospace;
+  --f-display:var(--f-ar-display); --f-body:var(--f-ar-body);
+}
+html[lang="en"]{--f-display:var(--f-en-display); --f-body:var(--f-en-body)}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.6;margin:0}
+
+/* brand band */
+.band{background:var(--navy);color:var(--on-navy);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:10px;border-bottom:4px solid var(--gold);position:sticky;top:0;z-index:10}
+.band-in{max-width:1120px;margin:0 auto;display:flex;flex-wrap:nowrap;align-items:center;justify-content:space-between;gap:10px}
+.brand{display:flex;align-items:center;gap:14px;min-width:0}
+.mark{width:40px;height:40px;flex:none}
+.name{font-family:var(--f-display);font-weight:700;font-size:1.3rem;line-height:1.1;letter-spacing:.02em}
+html[lang="en"] .name{letter-spacing:.14em}
+.sig{font-size:.74rem;color:var(--on-navy-muted);margin-top:2px}
+.sig b{color:var(--gold);font-weight:600}
+.tools{display:flex;align-items:center;gap:8px;flex-wrap:nowrap}
+@media (max-width:760px){.tools .tagline{display:none}}
+.tagline{font-size:.88rem;color:var(--on-navy-muted);border-inline-start:2px solid var(--gold);padding-inline-start:10px}
+.lang{font:inherit;font-size:.8rem;font-weight:600;cursor:pointer;color:var(--on-navy);background:var(--navy-2);border:1px solid color-mix(in srgb,var(--on-navy) 22%,transparent);border-radius:999px;padding:5px 12px;white-space:nowrap}
+.lang:hover{border-color:var(--gold)}
+.lic{font:inherit;font-size:.72rem;font-weight:600;cursor:pointer;color:var(--gold);background:color-mix(in srgb,var(--gold) 14%,transparent);border:1px solid var(--gold);border-radius:999px;padding:4px 10px;white-space:nowrap}
+.lic.on{color:var(--navy);background:var(--gold)}
+.lic b{color:var(--gold);font-weight:600}
+
+.page{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:22px 48px}
+.wrap{max-width:1120px;margin:0 auto;display:grid;gap:18px}
+.hero h1{font-family:var(--f-display);font-weight:700;font-size:clamp(1.35rem,3.2vw,1.9rem);margin:0;line-height:1.35;text-wrap:balance}
+html[lang="en"] .hero h1{font-weight:600;letter-spacing:-.01em}
+.hero p{margin:6px 0 0;color:var(--muted);max-width:64ch}
+.hero{background:var(--brand-soft);border-radius:16px;padding:18px;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;inset:auto -40px -60px auto;width:170px;height:170px;border-radius:50%;background:var(--gold);opacity:.16}
+.hero>*{position:relative}
+.grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:18px;align-items:start}
+@media (max-width:880px){.grid{grid-template-columns:minmax(0,1fr)}}
+.col{display:grid;gap:18px;min-width:0}
+.panel{background:var(--paper);border:1px solid var(--rule);border-top:4px solid var(--navy);border-radius:12px;padding:18px;display:grid;gap:14px;min-width:0}
+.step{display:flex;gap:10px;align-items:center}
+.step i{font-style:normal;font-family:var(--f-num);font-size:.8rem;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:var(--navy);font-weight:700;flex:none}
+h2{font-family:var(--f-display);font-size:1.02rem;margin:0}
+html[lang="en"] h2{font-weight:600}
+.hint{margin:0;color:var(--muted);font-size:.85rem}
+.f{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+label{display:grid;gap:4px;font-size:.82rem;color:var(--muted);font-weight:500}
+input,select{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--rule);border-radius:7px;padding:8px 10px;width:100%;min-width:0}
+input[type=number]{font-family:var(--f-num);direction:ltr;text-align:end}
+input:focus-visible,select:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offset:1px}
+.rate{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 14px;background:var(--brand-soft);border-radius:10px;padding:12px 14px}
+.rate b{font-family:var(--f-num);font-size:1.6rem;color:var(--brand)}
+.rate span{color:var(--muted);font-size:.85rem}
+.tasks{display:grid;gap:8px}
+.task{display:grid;grid-template-columns:minmax(0,1fr) 92px auto;gap:8px;align-items:center}
+button{font:inherit;cursor:pointer;border-radius:7px;border:1px solid var(--rule);background:transparent;color:var(--ink);padding:8px 12px}
+.ghost{color:var(--muted);padding:6px 10px}
+.add{border-style:dashed;color:var(--brand);justify-self:start}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button[aria-pressed="true"]{background:var(--brand-soft);border-color:var(--brand);color:var(--navy);font-weight:600}
+.sheet{position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px)}
+.pk{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+@media (max-width:420px){.pk{grid-template-columns:minmax(0,1fr)}}
+.pkc{border:1px solid var(--rule);border-radius:10px;padding:10px;display:grid;gap:4px;text-align:start;cursor:pointer;background:var(--paper)}
+.pkc[aria-pressed="true"]{border-color:var(--gold);box-shadow:inset 0 0 0 1px var(--gold);background:var(--gold-soft)}
+.pkc small{color:var(--muted);font-size:.75rem}
+.pkc b{font-family:var(--f-num);font-size:1.02rem}
+.pkc .tag{font-size:.7rem;color:var(--gold);font-weight:600;min-height:1.1em}
+.pkc ul{margin:0;padding-inline-start:14px;font-size:.75rem;color:var(--muted)}
+.meter{display:grid;gap:6px}
+.bar{position:relative;height:12px;border-radius:6px;background:var(--rule);overflow:hidden}
+.bar span{position:absolute;inset-block:0;inset-inline-start:0;border-radius:6px}
+.meter .lbl{display:flex;justify-content:space-between;gap:8px;font-size:.78rem;color:var(--muted)}
+.meter .lbl b{font-family:var(--f-num);color:var(--ink)}
+.verdict{border-radius:10px;padding:12px 14px;font-size:.9rem;border:1px solid var(--rule);display:grid;gap:4px}
+.verdict strong{font-family:var(--f-display);font-size:.95rem;display:flex;align-items:center;gap:8px}
+.verdict strong i{font-style:normal;flex:none;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:.8rem;font-weight:700;color:#fff;background:var(--muted)}
+.verdict{border-inline-start-width:4px}.v-good strong i{background:var(--good)}.v-warn strong i{background:var(--warn)}.v-bad strong i{background:var(--bad)}
+.v-good{border-inline-start-color:var(--good)!important}.v-warn{border-inline-start-color:var(--warn)!important}.v-bad{border-inline-start-color:var(--bad)!important}
+.replies{display:grid;gap:8px}.replies:empty{display:none}.replies h3{margin:4px 0 0;font-size:.85rem;color:var(--muted);font-weight:600}
+.rep{border:1px solid var(--rule);border-radius:10px;padding:10px 12px;background:var(--paper);display:grid;gap:6px}
+.rep b{font-size:.85rem}.rep p{margin:0;font-size:.82rem;color:var(--muted);white-space:pre-line}
+.rep button{justify-self:start;font-size:.8rem;padding:6px 12px;min-height:34px}
+html[lang="en"] .verdict strong{font-weight:600}
+.v-good{background:color-mix(in srgb,var(--good) 12%,var(--paper));border-color:color-mix(in srgb,var(--good) 40%,var(--paper))}
+.v-warn{background:color-mix(in srgb,var(--warn) 12%,var(--paper));border-color:color-mix(in srgb,var(--warn) 40%,var(--paper))}
+.v-bad{background:color-mix(in srgb,var(--bad) 12%,var(--paper));border-color:color-mix(in srgb,var(--bad) 40%,var(--paper))}
+.quote{border:1px solid var(--rule);border-radius:10px;padding:16px;background:var(--paper);display:grid;gap:8px;font-size:.88rem}
+.quote header{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;border-bottom:2px solid var(--gold);padding-bottom:8px}
+.quote header b{font-family:var(--f-display);font-size:1rem}
+.quote .meta{font-size:.75rem;color:var(--muted);text-align:end}
+.quote ol{margin:0;padding-inline-start:18px}
+.qrow{display:flex;justify-content:space-between;gap:8px}
+.qrow span:last-child{font-variant-numeric:tabular-nums;font-weight:500}
+.qtotal{border-top:1px dashed var(--rule);padding-top:6px;font-weight:600}
+.pbar{display:none}
+@media (max-width:880px){
+.pbar{display:flex;position:fixed;inset-inline:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));z-index:20;align-items:center;justify-content:space-between;gap:10px;background:var(--navy);color:#fff;border:0;border-radius:14px;padding:10px 16px;min-height:58px;box-shadow:0 8px 24px rgba(29,39,64,.28);font:inherit;text-align:start;cursor:pointer;transition:transform .25s,opacity .25s}
+.pbar.off{transform:translateY(140%);opacity:0;pointer-events:none}
+.pbar small{display:block;font-size:.75rem;opacity:.8}.pbar b{font-family:var(--f-num);font-size:1.15rem;color:var(--gold)}
+.pbar .go{font-size:.8rem;background:rgba(255,255,255,.12);border-radius:999px;padding:6px 12px;white-space:nowrap}
+body{padding-bottom:84px}}
+.qextra{font-size:.8rem;color:var(--muted)}
+.actions{display:flex;flex-wrap:wrap;gap:8px}
+.primary{background:var(--gold);border-color:var(--gold);color:var(--navy);font-weight:700}
+button:disabled,.primary:disabled{opacity:.5;cursor:not-allowed}
+.status{font-size:.82rem;color:var(--good);min-height:1.2em;margin:0}
+.foot{max-width:1120px;margin:8px auto 0;font-size:.78rem;color:var(--muted);display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+textarea.hidden-copy{position:absolute;inset-inline-start:-9999px}
+
+/* demo bar, watermark, locked fields */
+.demo-bar{border-radius:14px;padding:12px 14px;background:var(--gold-soft);border:1px solid color-mix(in srgb,var(--gold) 45%,var(--rule));font-size:.92rem;display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.quote{position:relative;overflow:hidden}
+.quote.demo::after{content:attr(data-wm);position:absolute;inset:0;display:grid;place-items:center;font-family:var(--f-display);font-size:42px;font-weight:800;color:color-mix(in srgb,var(--gold) 24%,transparent);transform:rotate(-24deg);pointer-events:none;white-space:nowrap}
+input.locked{background:repeating-linear-gradient(135deg,var(--bg) 0 8px,color-mix(in srgb,var(--rule) 45%,var(--bg)) 8px 16px);color:var(--muted)}
+.lockn{font-size:.78rem;color:var(--gold);margin:-6px 0 0}
+.foot a{color:var(--brand);cursor:pointer;text-decoration:underline}
+/* activation + data sheet */
+.gate{position:fixed;inset:0;background:color-mix(in srgb,var(--navy) 55%,transparent);display:grid;place-items:end center;z-index:20;overflow:auto;
+  padding:max(12px,env(safe-area-inset-top,0px)) 0 0}
+.gate .box{background:var(--paper);border-radius:18px 18px 0 0;padding:20px max(20px,env(safe-area-inset-right,0px)) max(22px,env(safe-area-inset-bottom,0px)) max(20px,env(safe-area-inset-left,0px));max-width:560px;width:100%;display:grid;gap:12px}
+@media (min-width:700px){.gate{place-items:center}.gate .box{border-radius:18px}}
+.gate .gtop{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.gate .x{border:0;background:none;font-size:1.4rem;color:var(--muted);padding:2px 8px}
+.gate h2{font-size:1.15rem}
+.gate h3{font-family:var(--f-display);font-size:.98rem;margin:6px 0 0;padding-top:12px;border-top:1px solid var(--rule)}
+.gate .err{color:var(--bad);font-size:.85rem;min-height:1.2em;margin:0}
+.gate .row{display:flex;gap:8px;flex-wrap:wrap}.gate .row>*{flex:1}
+@media (max-width:480px){.gate .row{flex-direction:column}}
+.sig{white-space:nowrap}
+@media (max-width:480px){html[lang="en"] .name{letter-spacing:.08em}}
+.gate .okline{margin:0;font-size:.9rem}.gate .okline b{font-family:var(--f-num)}
+.filebtn{display:flex;align-items:center;justify-content:center;font:inherit;cursor:pointer;border-radius:7px;border:1px solid var(--rule);padding:8px 12px;color:var(--ink)}
+.filebtn.disabled{opacity:.55;cursor:not-allowed}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="rasma-mark" viewBox="0 0 48 48">
+    <rect x="1" y="1" width="46" height="46" rx="12" fill="#27345a" stroke="#c08a2e" stroke-opacity=".55"/>
+    <path d="M10 33c5 0 6-11 12-11 4.5 0 4.5 6 9 6 3.5 0 5-7 7-13" fill="none" stroke="#e2ad55" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="38" cy="15" r="3.4" fill="#e2ad55"/>
+    <path d="M10 38h28" stroke="#eef1f8" stroke-opacity=".35" stroke-width="1.6" stroke-linecap="round"/>
+  </symbol>
+</svg>
+
+<div class="gate" id="gate" hidden role="dialog" aria-modal="true" aria-labelledby="gateTitle">
+  <div class="box">
+    <div class="gtop"><h2 id="gateTitle" data-i="gateTitle"></h2><button class="x" type="button" id="gateClose" aria-label="close">✕</button></div>
+    <div id="licOff">
+      <form id="gateForm" novalidate style="display:grid;gap:10px">
+        <p class="hint" data-i="gateHint"></p>
+        <label for="licKey"><span data-i="keyLabel"></span><input id="licKey" autocomplete="off" placeholder="XXXX-XXXX-XXXX-XXXX" dir="ltr"></label>
+        <p class="err" id="gateErr" role="alert"></p>
+        <button class="primary" type="submit" id="gateBtn" data-i="activate"></button>
+      </form>
+    </div>
+    <div id="licOn" hidden style="display:grid;gap:10px">
+      <p class="okline" id="licLine"></p>
+      <p class="hint" data-i="licDev"></p>
+      <button type="button" id="deact" data-i="deact"></button>
+      <p class="err" id="deactErr" role="alert"></p>
+    </div>
+    <h3 data-i="dataH"></h3>
+    <p class="hint" data-i="dataSub"></p>
+    <div class="row">
+      <button class="primary" type="button" id="send" data-i="send"></button>
+      <button type="button" id="bk" data-i="bk"></button>
+      <label class="filebtn" id="rsLbl"><span data-i="rs"></span><input type="file" id="rs" accept=".json,application/json" hidden></label>
+    </div>
+    <p class="hint" id="dataMsg" role="status"></p>
+  </div>
+</div>
+
+<header class="band">
+  <div class="band-in">
+    <div class="brand">
+      <svg class="mark" aria-hidden="true"><use href="#rasma-mark"/></svg>
+      <div>
+        <div class="name" data-i="brandName"></div>
+        <div class="sig" id="sig"></div>
+      </div>
+    </div>
+    <div class="tools">
+      <span class="tagline" data-i="tagline"></span>
+      <button class="lic" type="button" id="licBadge"></button>
+      <button class="lang" type="button" data-lang-toggle></button>
+    </div>
+  </div>
+</header>
+
+<main class="page">
+  <div class="wrap">
+    <div class="hero">
+      <h1 data-i="heroTitle"></h1>
+      <p data-i="heroSub"></p>
+    </div>
+    <div class="demo-bar" id="demoBar"><span data-i="demoBar"></span><button class="primary" type="button" id="demoAct" data-i="activateBtn"></button></div>
+
+    <div class="grid">
+      <div class="col">
+        <section class="panel" aria-labelledby="s1">
+          <div class="step"><i>1</i><h2 id="s1" data-i="s1"></h2></div>
+          <div class="f">
+            <label for="currency"><span data-i="currency"></span>
+              <select id="currency">
+                <option value="USD"></option><option value="SAR"></option><option value="EGP"></option><option value="KWD"></option><option value="AED"></option><option value="QAR"></option><option value="BHD"></option><option value="OMR"></option><option value="JOD"></option><option value="MAD"></option><option value="GBP"></option><option value="EUR"></option><option value="OTHER"></option>
+              </select></label>
+            <label for="curName" id="curNameL" hidden><span data-i="curName"></span><input id="curName" maxlength="20"></label>
+            <label for="income"><span data-i="income"></span><input id="income" type="number" min="0" step="50" value="3000"></label>
+            <label for="expenses"><span data-i="expenses"></span><input id="expenses" type="number" min="0" step="10" value="400"></label>
+            <label for="days"><span data-i="days"></span><input id="days" type="number" min="1" max="31" step="1" value="20"></label>
+            <label for="hours"><span data-i="hours"></span><input id="hours" type="number" min="1" max="16" step="0.5" value="5"></label>
+            <label for="fees"><span data-i="fees"></span><input id="fees" type="number" min="0" max="60" step="1" value="10"></label>
+          </div>
+          <div class="rate"><span data-i="rateBefore"></span><b id="minRate"></b><span data-i="rateAfter"></span></div>
+          <p class="hint" data-i="curNote"></p>
+          <p class="hint" data-i="hoursNote"></p>
+        </section>
+
+        <section class="panel" aria-labelledby="s2">
+          <div class="step"><i>2</i><h2 id="s2" data-i="s2"></h2></div>
+          <div class="f">
+            <label for="client"><span data-i="client"></span><input id="client"></label>
+            <label for="project"><span data-i="project"></span><input id="project"></label>
+          </div>
+          <p class="lockn" id="lockNote" data-i="lockNote"></p>
+          <div class="tasks" id="tasks"></div>
+          <button class="add" type="button" id="addTask" data-i="addTask"></button>
+          <div>
+            <p class="hint" style="margin-bottom:6px" data-i="clarity"></p>
+            <div class="seg" id="risk" role="group">
+              <button type="button" data-v="0.1" data-i="risk1"></button>
+              <button type="button" data-v="0.25" aria-pressed="true" data-i="risk2"></button>
+              <button type="button" data-v="0.4" data-i="risk3"></button>
+            </div>
+          </div>
+          <div class="f">
+            <label for="margin"><span data-i="margin"></span><input id="margin" type="number" min="0" max="200" step="5" value="25"></label>
+            <label for="deposit"><span data-i="deposit"></span><input id="deposit" type="number" min="0" max="100" step="5" value="50"></label>
+          </div>
+          <p class="hint" data-i="sampleNote"></p>
+        </section>
+
+        <section class="panel" aria-labelledby="s3">
+          <div class="step"><i>3</i><h2 id="s3" data-i="s3"></h2></div>
+          <label for="budget"><span data-i="budget"></span><input id="budget" type="number" min="0" step="10" value="1150"></label>
+          <div class="verdict" id="verdict" role="status"></div>
+          <div class="replies" id="replies"></div>
+        </section>
+      </div>
+
+      <aside class="col sheet">
+        <section class="panel" aria-labelledby="s4">
+          <h2 id="s4" data-i="s4"></h2>
+          <div class="pk" id="packages"></div>
+          <div class="meter">
+            <div class="lbl"><span data-i="marginLbl"></span><b id="marginLbl"></b></div>
+            <div class="bar" aria-hidden="true"><span id="marginBar"></span></div>
+            <div class="lbl"><span><span data-i="floorLbl"></span> <b id="floorLbl"></b></span><span><span data-i="daysLbl"></span> <b id="daysLbl"></b></span></div>
+          </div>
+        </section>
+
+        <section class="panel" aria-labelledby="s5">
+          <h2 id="s5" data-i="s5"></h2>
+          <div class="quote" id="quote"></div>
+          <div class="actions">
+            <button class="primary" type="button" id="copyQuote" data-i="copyQuote"></button>
+            <button type="button" id="copyWa" data-i="copyWa"></button>
+          </div>
+          <p class="status" id="status" role="status"></p>
+        </section>
+      </aside>
+    </div>
+    <div class="foot"><span id="footBrand"></span><a id="footData" data-i="footData"></a></div>
+  </div>
+</main>
+<button class="pbar off" id="pbar" type="button"><span><small id="pbPk"></small><b id="pbPrice"></b></span><span class="go" id="pbGo"></span></button>
+<textarea class="hidden-copy" id="copyBuf" aria-hidden="true" tabindex="-1"></textarea>
+
+<script>
+/* ===== Settings live in config.json (storeId, productId, licenseApi) ===== */
+let CFG={storeId:"",productId:"",licenseApi:""};
+
+/* ===== Text (Arabic / English) ===== */
+const T={
+ar:{brandName:"رسمة",signature:"منتج من <b>كوليكت</b>",tagline:"اجعل كل عرض سعر مكسباً",langBtn:"English",
+ gateTitle:"التفعيل وبياناتك",gateHint:"الصق رمز الترخيص الذي وصلك في بريد الشراء. يعمل الرمز على جهازين، ويحتاج التفعيل اتصالاً بالإنترنت مرة واحدة.",keyLabel:"رمز الترخيص",activate:"تفعيل",checking:"جارٍ التحقق…",activateBtn:"تفعيل برمز الشراء",demoBar:"النسخة التجريبية: جرّب الأداة كاملة على المثال. العرض المنسوخ يحمل علامة «نسخة تجريبية».",lockNote:"اسم العميل واسم المشروع يُفتحان بعد التفعيل.",wm:"نسخة تجريبية",demoTag:"(أُعدّ بالنسخة التجريبية من رسمة)",licLine:(t,d)=>`رسمة مفعّلة برمز ينتهي بـ <b dir="ltr">${t}</b> منذ ${d}. شكراً لشرائك.`,ownerLine:"رسمة مفعّلة برمز المالك على هذا الجهاز.",licDev:"الرمز يعمل على جهازين. لنقله إلى جهاز جديد ألغِ التفعيل من هنا أولاً.",deact:"إلغاء التفعيل من هذا الجهاز",dataH:"بياناتك",dataSub:"إعداداتك وعرضك الحالي محفوظة في هذا الجهاز فقط. للعمل على الهاتف والكمبيوتر معاً: فعّل الرمز نفسه على الجهازين، ثم انقل بياناتك بزر «إرسال إلى جهازي الآخر».",send:"إرسال إلى جهازي الآخر",bk:"حفظ نسخة احتياطية",rs:"استعادة نسخة",sendHint:"أرسل الملف لنفسك عبر واتساب أو البريد، ثم افتحه في الجهاز الآخر من «استعادة نسخة».",bkDone:"حُفظت النسخة الاحتياطية.",bkFail:"تعذّر الحفظ من هنا.",rsDone:"استُعيدت بياناتك.",rsBad:"الملف ليس نسخة احتياطية صالحة لرسمة.",dataLocked:"النسخ الاحتياطية متاحة في النسخة المفعّلة.",footData:"التفعيل ونقل البيانات",curName:"اسم العملة",actDone:"تم التفعيل. كل المزايا مفتوحة الآن.",deactDone:"أُلغي التفعيل من هذا الجهاز.",revoked:"أُوقف رمز التفعيل. رسمة عادت للنسخة التجريبية.",
+ e_invalid:"الرمز غير صحيح أو موقوف. انسخه كما وصلك في بريد الشراء.",e_device_limit:"وصل هذا الرمز إلى الحد الأقصى من الأجهزة. ألغِ التفعيل من جهاز قديم أو تواصل مع البائع.",e_other:"هذا الرمز لا يخص رسمة.",e_cfg:"رسمة لم تُضبط بعد. تواصل مع البائع.",e_deact:"تعذّر إلغاء التفعيل:",e_revoked:"تم إيقاف هذا الترخيص.",e_device_removed:"تمت إزالة هذا الجهاز من الترخيص.",e_expired:"انتهت صلاحية التفعيل. أدخل المفتاح مرة أخرى.",e_rate_limit:"محاولات كثيرة. انتظر دقيقة ثم حاول مرة أخرى.",e_missing_key:"الصق رمز الترخيص الذي وصلك في بريد الشراء.",e_network:"تعذر الاتصال بخادم الترخيص. تحقق من الإنترنت وحاول مرة أخرى.",e_generic:"تعذر التفعيل. حاول مرة أخرى.",
+ badgeDemo:"نسخة تجريبية · تفعيل",badgeOn:"نسخة مفعّلة",badgeOwner:"نسخة المالك",
+ heroTitle:"كم يجب أن تطلب في هذا المشروع؟",heroSub:"ثلاث خطوات: دخلك المستهدف، ثم مهام المشروع، ثم ميزانية العميل. تحصل على سعر عادل، وثلاث باقات، ونصيحة تفاوض، وعرض سعر جاهز للإرسال.",
+ s1:"سعر ساعتك الأدنى",currency:"العملة",income:"الدخل الشهري المستهدف",expenses:"مصاريف العمل الشهرية",days:"أيام العمل في الشهر",hours:"ساعات منتجة يومياً",fees:"رسوم وضرائب (%)",
+ rateBefore:"لا تعمل بأقل من",rateAfter:"للساعة",
+ curNote:"العملة الافتراضية الدولار، ومعها 11 عملة أخرى، أو اكتب اسم عملتك من «عملة أخرى».",
+ hoursNote:"الساعات المنتجة هي وقت التنفيذ الفعلي، بدون الرسائل والاجتماعات والتسويق.",
+ s2:"مهام المشروع والوقت المتوقع",client:"اسم العميل",project:"اسم المشروع",taskAria:"اسم المهمة",hoursAria:"عدد الساعات",remove:"حذف",addTask:"+ إضافة مهمة",
+ clarity:"مدى وضوح المشروع (يضيف هامشاً للمفاجآت)",risk1:"واضح تماماً +10%",risk2:"فيه غموض +25%",risk3:"غامض +40%",
+ margin:"هامش الربح (%)",deposit:"الدفعة المقدمة (%)",sampleNote:"الأرقام الحالية مثال توضيحي، استبدلها ببيانات مشروعك.",
+ s3:"ميزانية العميل (إن ذكرها)",budget:"المبلغ الذي ذكره العميل",
+ noTasksT:"أضف مهمة واحدة على الأقل",noTasksB:"اكتب مهام المشروع وعدد ساعات كل مهمة في الخطوة 2 ليظهر السعر.",
+ noBudgetT:"لم يذكر العميل ميزانية",noBudgetB:"اعرض الباقات الثلاث، وابدأ الكلام بالمتقدمة.",
+ goodT:"ميزانيته تكفي الباقة المتقدمة",goodB:"اعرض المتقدمة والشاملة فقط. سعر ساعتك الفعلي عند ميزانيته: {r}.",
+ warnT:"لا تعطِ خصماً، قلّص النطاق",warnB:"ميزانيته أقل من المتقدمة بـ {gap}. احذف مهاماً تساوي نحو {h} ساعة، أو اعرض الأساسية بسعر {basic}.",
+ badT:"هذه الميزانية تخسّرك",badB:"أقل من حدك الأدنى ({floor}). سعر ساعتك سيصبح {r} فقط. إما أن تعتذر بلطف، أو تعرض نطاقاً مصغراً لا يتجاوز {h} ساعة عمل.",
+ pk:["الأساسية","المتقدمة","الشاملة"],best:"الأنسب",note:["المخرجات الأساسية فقط","كل المهام المذكورة","أولوية في التنفيذ + ملفات المصدر"],support:"دعم {n} يوماً",noSupport:"بدون دعم بعد التسليم",
+ repH:"ردود جاهزة للعميل",pbGo:"الباقات والعرض ↓",pbPk:"الباقة {p} · ربحك {m}",repCopy:"نسخ الرد",repCopied:"تم نسخ الرد.",repDone:"تم النسخ",
+ rAskT:"اسأل عن ميزانيته",rAsk:"مرحباً {client}،\nقبل أن أجهّز العرض: هل لديك ميزانية تقريبية للمشروع؟ هذا يساعدني أن أقترح عليك النطاق الأنسب.",
+ rScopeT:"اعرض نطاقاً أصغر",rScope:"شكراً لتوضيح ميزانيتك.\nبمبلغ {b} أستطيع تنفيذ الباقة الأساسية بسعر {basic}، وتشمل المخرجات الأساسية.\nوإن أردت كل المهام المذكورة فالباقة المتقدمة بسعر {mid}.",
+ rHoldT:"اثبت على سعرك",rHold:"أفهم أن الميزانية مهمة.\nالسعر {mid} يغطي كل المهام وجولتي تعديل ودعماً بعد التسليم، ولا أستطيع خفضه دون أن تتأثر الجودة.\nيمكننا تقليص المهام بدل ذلك إن أردت.",
+ rMiniT:"اقترح بداية مصغّرة",rMini:"شكراً لثقتك.\nميزانية {b} لا تغطي المشروع كاملاً، لكنها تكفي لنطاق مصغّر من نحو {h} ساعة عمل.\nهل نحدد معاً الأهم لنبدأ به؟",
+ rNoT:"اعتذر بلطف",rNo:"شكراً لتواصلك وثقتك.\nللأسف هذه الميزانية لا تغطي تكلفة تنفيذ المشروع بالجودة التي يستحقها.\nإن تغيّرت الميزانية لاحقاً يسعدني العمل معك.",
+ rExtra:"جولة تعديل إضافية",extraLine:p=>`كل جولة تعديل إضافية بعد المذكورة: ${p}.`,
+ s4:"باقاتك المقترحة",marginLbl:"ربحك فوق الحد الأدنى",floorLbl:"الحد الأدنى:",daysLbl:"المدة:",
+ s5:"معاينة عرض السعر",to:"إلى:",validUntil:"صالح حتى",quoteDefault:"عرض سعر",clientDefault:"العميل",
+ rPackage:"الباقة",rRev:"جولات التعديل",rDays:"مدة التنفيذ",rPrice:"السعر",rDeposit:"الدفعة المقدمة ({p}%)",rRest:"المتبقي عند التسليم",
+ copyQuote:"نسخ العرض",copyWa:"نسخ رسالة واتساب",copied:"تم نسخ العرض.",copiedWa:"تم نسخ رسالة واتساب.",copyFail:"انسخ النص يدوياً من المعاينة.",
+ cur:{USD:["الدولار الأمريكي","دولار"],SAR:["الريال السعودي","ريال سعودي"],EGP:["الجنيه المصري","جنيه مصري"],KWD:["الدينار الكويتي","دينار كويتي"],AED:["الدرهم الإماراتي","درهم إماراتي"],QAR:["الريال القطري","ريال قطري"],BHD:["الدينار البحريني","دينار بحريني"],OMR:["الريال العُماني","ريال عُماني"],JOD:["الدينار الأردني","دينار أردني"],MAD:["الدرهم المغربي","درهم مغربي"],GBP:["الجنيه الإسترليني","جنيه إسترليني"],EUR:["اليورو","يورو"],OTHER:["عملة أخرى",""]},
+ rev:n=>n===1?"جولة تعديل واحدة":n===2?"جولتا تعديل":n+" جولات تعديل",
+ dd:n=>n===1?"يوم عمل واحد":n===2?"يوما عمل":n<=10?n+" أيام عمل":n+" يوم عمل",
+ sample:{client:"شركة الريادة للتسويق",project:"هوية بصرية متكاملة",tasks:[["بحث وتحليل المنافسين",4],["تصميم 3 مقترحات للشعار",10],["دليل الألوان والخطوط",5],["تجهيز الملفات النهائية",3]]},
+ quoteText:(q)=>[`عرض سعر ${q.no}`,`المشروع: ${q.project}`,`إلى: ${q.client}`,"","يشمل:",...q.names.map((n,i)=>`${i+1}. ${n}`),"",
+   `الباقة: ${q.pk} — ${q.rev}${q.support?` — ${q.support}`:""}`,`مدة التنفيذ: ${q.days} من استلام الدفعة المقدمة`,
+   `السعر الإجمالي: ${q.price}`,`الدفعة المقدمة (${q.dep}%): ${q.depAmt}`,`المتبقي عند التسليم: ${q.rest}`,T.ar.extraLine(q.extra),`العرض صالح حتى ${q.valid}.`].join("\n"),
+ waText:(q)=>`مرحباً ${q.client}،\nجهزت لك عرض مشروع «${q.project}» بباقة ${q.pk}: ${q.price}، والتنفيذ خلال ${q.days}.\nللبدء نحتاج دفعة مقدمة ${q.depAmt} (${q.dep}%).\nإذا ناسبك ردّ بكلمة «موافق» وأرسل لك التفاصيل.`
+},
+en:{brandName:"RASMA",signature:"A product by <b>Collect</b>",tagline:"Make Every Proposal Count",langBtn:"العربية",
+ gateTitle:"Activation and your data",gateHint:"Paste the license key from your purchase email. Each key works on two devices, and activation needs an internet connection once.",keyLabel:"License key",activate:"Activate",checking:"Checking…",activateBtn:"Activate with your key",demoBar:"Demo version: try the full tool on the example. Copied quotes carry a \"Demo\" mark.",lockNote:"Client and project names unlock after activation.",wm:"DEMO",demoTag:"(Prepared with the RASMA demo)",licLine:(t,d)=>`RASMA is activated with a key ending in <b dir="ltr">${t}</b> since ${d}. Thank you for your purchase.`,ownerLine:"RASMA is activated with the owner key on this device.",licDev:"Each key works on two devices. To move it to a new device, deactivate here first.",deact:"Deactivate this device",dataH:"Your data",dataSub:"Your settings and current quote are saved on this device only. To work on your phone and computer: activate the same key on both, then move your data with \"Send to my other device\".",send:"Send to my other device",bk:"Save backup",rs:"Restore backup",sendHint:"Send the file to yourself by WhatsApp or email, then open it on the other device with \"Restore backup\".",bkDone:"Backup saved.",bkFail:"Could not save from here.",rsDone:"Your data is restored.",rsBad:"That file is not a valid RASMA backup.",dataLocked:"Backups are available in the activated version.",footData:"Activation and moving your data",curName:"Currency name",actDone:"Activated. Every feature is open now.",deactDone:"This device was deactivated.",revoked:"Your key was disabled. RASMA is back to the demo.",
+ e_invalid:"This key is invalid or disabled. Copy it exactly as it appears in your purchase email.",e_device_limit:"This key has reached its device limit. Deactivate an old device or contact the seller.",e_other:"This key is not for RASMA.",e_cfg:"RASMA is not set up yet. Contact the seller.",e_deact:"Could not deactivate:",e_revoked:"This license has been disabled.",e_device_removed:"This device was removed from the license.",e_expired:"Your activation expired. Enter your key again.",e_rate_limit:"Too many attempts. Wait a minute and try again.",e_missing_key:"Enter your license key.",e_network:"Couldn't reach the license server. Check your connection and try again.",e_generic:"Activation failed. Please try again.",
+ badgeDemo:"Demo · Activate",badgeOn:"Activated",badgeOwner:"Owner copy",
+ heroTitle:"What should you charge for this project?",heroSub:"Three steps: your target income, the project tasks, then the client's budget. You get a fair price, three packages, negotiation advice, and a quote ready to send.",
+ s1:"Your minimum hourly rate",currency:"Currency",income:"Target monthly income",expenses:"Monthly business expenses",days:"Working days per month",hours:"Productive hours per day",fees:"Fees and taxes (%)",
+ rateBefore:"Never work for less than",rateAfter:"per hour",
+ curNote:"The default currency is the US dollar, with 11 more, or name your own under \"Other currency\".",
+ hoursNote:"Productive hours are actual delivery time, not messages, meetings, or marketing.",
+ s2:"Project tasks and estimated time",client:"Client name",project:"Project name",taskAria:"Task name",hoursAria:"Hours",remove:"Remove",addTask:"+ Add task",
+ clarity:"How clear is the project? (adds a buffer for surprises)",risk1:"Very clear +10%",risk2:"Some unknowns +25%",risk3:"Vague +40%",
+ margin:"Profit margin (%)",deposit:"Upfront deposit (%)",sampleNote:"These numbers are an example. Replace them with your project's details.",
+ s3:"Client's budget (if they shared one)",budget:"Amount the client mentioned",
+ noTasksT:"Add at least one task",noTasksB:"List the project tasks and the hours for each in step 2 to see a price.",
+ noBudgetT:"No budget mentioned",noBudgetB:"Show all three packages and lead with Standard.",
+ goodT:"Their budget covers the Standard package",goodB:"Offer only Standard and Premium. Your effective hourly rate at their budget: {r}.",
+ warnT:"Don't discount. Reduce the scope.",warnB:"Their budget is {gap} below Standard. Remove about {h} hours of tasks, or offer Basic at {basic}.",
+ badT:"This budget loses you money",badB:"It's below your floor ({floor}). Your hourly rate would drop to {r}. Decline politely, or offer a smaller scope of no more than {h} hours.",
+ pk:["Basic","Standard","Premium"],best:"Best fit",note:["Core deliverables only","All listed tasks","Priority delivery + source files"],support:"{n} days of support",noSupport:"No post-delivery support",
+ repH:"Ready replies for the client",pbGo:"Packages & quote ↓",pbPk:"{p} package · profit {m}",repCopy:"Copy reply",repCopied:"Reply copied.",repDone:"Copied",
+ rAskT:"Ask for their budget",rAsk:"Hi {client},\nBefore I prepare the quote: do you have a rough budget for this project? It helps me suggest the right scope.",
+ rScopeT:"Offer a smaller scope",rScope:"Thanks for sharing your budget.\nFor {b} I can deliver the Basic package at {basic}, which covers the core deliverables.\nIf you'd like every task listed, the Standard package is {mid}.",
+ rHoldT:"Hold your price",rHold:"I understand the budget matters.\n{mid} covers every task, two revision rounds and support after delivery, and I can't lower it without affecting quality.\nWe can reduce the tasks instead if you prefer.",
+ rMiniT:"Suggest a smaller start",rMini:"Thank you for your trust.\nA budget of {b} doesn't cover the full project, but it fits a smaller scope of about {h} hours of work.\nShall we pick the most important part to start with?",
+ rNoT:"Decline politely",rNo:"Thank you for reaching out.\nUnfortunately this budget doesn't cover the cost of doing this project at the quality it deserves.\nIf the budget changes later, I'd be glad to work with you.",
+ rExtra:"Extra revision round",extraLine:p=>`Each extra revision round beyond those included: ${p}.`,
+ s4:"Suggested packages",marginLbl:"Profit above your floor",floorLbl:"Floor:",daysLbl:"Timeline:",
+ s5:"Quote preview",to:"To:",validUntil:"Valid until",quoteDefault:"Quote",clientDefault:"the client",
+ rPackage:"Package",rRev:"Revisions",rDays:"Timeline",rPrice:"Price",rDeposit:"Deposit ({p}%)",rRest:"Balance on delivery",
+ copyQuote:"Copy quote",copyWa:"Copy WhatsApp message",copied:"Quote copied.",copiedWa:"WhatsApp message copied.",copyFail:"Copy the text manually from the preview.",
+ cur:{USD:["US Dollar","$"],SAR:["Saudi Riyal","SAR"],EGP:["Egyptian Pound","EGP"],KWD:["Kuwaiti Dinar","KWD"],AED:["UAE Dirham","AED"],QAR:["Qatari Riyal","QAR"],BHD:["Bahraini Dinar","BHD"],OMR:["Omani Rial","OMR"],JOD:["Jordanian Dinar","JOD"],MAD:["Moroccan Dirham","MAD"],GBP:["British Pound","£"],EUR:["Euro","€"],OTHER:["Other currency",""]},
+ rev:n=>n===1?"1 revision round":n+" revision rounds",
+ dd:n=>n===1?"1 working day":n+" working days",
+ sample:{client:"Northwind Marketing",project:"Complete brand identity",tasks:[["Research and competitor review",4],["3 logo concepts",10],["Color and type guide",5],["Final file preparation",3]]},
+ quoteText:(q)=>[`Quote ${q.no}`,`Project: ${q.project}`,`To: ${q.client}`,"","Includes:",...q.names.map((n,i)=>`${i+1}. ${n}`),"",
+   `Package: ${q.pk} — ${q.rev}${q.support?` — ${q.support}`:""}`,`Timeline: ${q.days} from receipt of the deposit`,
+   `Total price: ${q.price}`,`Deposit (${q.dep}%): ${q.depAmt}`,`Balance on delivery: ${q.rest}`,T.en.extraLine(q.extra),`This quote is valid until ${q.valid}.`].join("\n"),
+ waText:(q)=>`Hi ${q.client},\nI've prepared your quote for "${q.project}" with the ${q.pk} package: ${q.price}, delivered in ${q.days}.\nTo get started, I need a ${q.dep}% deposit of ${q.depAmt}.\nIf this works for you, reply "Approved" and I'll send the details.`
+}};
+const DEC={USD:0,SAR:0,EGP:0,KWD:3,AED:0,QAR:0,BHD:3,OMR:3,JOD:3,MAD:0,GBP:0,EUR:0,OTHER:0};
+const $=id=>document.getElementById(id);
+const store={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+let lang=store.get("rasma_lang")||((navigator.language||"").toLowerCase().startsWith("ar")?"ar":"en");
+if(!T[lang]) lang="ar";
+const L=()=>T[lang];
+const tt=(k,v={})=>String(L()[k]).replace(/\{(\w+)\}/g,(_,x)=>v[x]);
+
+function applyLang(){
+  const d=document.documentElement; d.lang=lang; d.dir=lang==="ar"?"rtl":"ltr";
+  document.querySelectorAll("[data-i]").forEach(n=>{n.innerHTML=L()[n.dataset.i]});
+  document.querySelectorAll("[data-lang-toggle]").forEach(b=>{b.textContent=L().langBtn;b.setAttribute("aria-label",lang==="ar"?"Switch to English":"التحويل إلى العربية");b.lang=lang==="ar"?"en":"ar"});
+  $("sig").innerHTML=L().signature;
+  $("footBrand").innerHTML=(lang==="ar"?"رسمة · ":"RASMA · ")+L().signature+(lang==="ar"?" · الإصدار 1.0":" · Version 1.0");
+  $("risk").setAttribute("aria-label",L().clarity);
+  [...$("currency").options].forEach(o=>o.textContent=L().cur[o.value][0]);
+  $("quote").dataset.wm=L().wm;
+  document.title=lang==="ar"?"رسمة | RASMA":"RASMA";
+  renderBadge();
+}
+function renderBadge(){
+  const b=$("licBadge"),on=licensed(),own=on&&String(LIC.inst).startsWith("owner-");
+  b.textContent=on?(own?L().badgeOwner:L().badgeOn):L().badgeDemo;b.classList.toggle("on",on);
+  $("demoBar").hidden=on;$("lockNote").hidden=on;
+  ["client","project"].forEach(id=>{const i=$(id);i.readOnly=!on;i.classList.toggle("locked",!on)});
+  $("quote").classList.toggle("demo",!on);
+  ["send","bk"].forEach(id=>$(id).disabled=!on);$("rs").disabled=!on;$("rsLbl").classList.toggle("disabled",!on);
+  $("licOff").hidden=on;$("licOn").hidden=!on;
+  if(on)$("licLine").innerHTML=own?L().ownerLine:L().licLine(LIC.tail,new Date(LIC.at).toLocaleDateString(lang==="ar"?"ar":"en"));
+}
+document.querySelectorAll("[data-lang-toggle]").forEach(b=>b.addEventListener("click",()=>{
+  const wasSample=isSample(); lang=lang==="ar"?"en":"ar"; store.set("rasma_lang",lang);
+  if(wasSample) loadSample(); else if(!licensed()){const sm=L().sample;$("client").value=sm.client;$("project").value=sm.project}
+  applyLang(); renderTasks(); calc();
+}));
+
+/* ---------- licence (Lemon Squeezy shape, through the Cloudflare Worker) ---------- */
+const LS_API="https://api.lemonsqueezy.com/v1/licenses/",RECHECK_MS=3*864e5,GRACE_MS=45*864e5;
+let LIC=null;try{LIC=JSON.parse(store.get("rasma_lic")||"null")}catch(e){LIC=null}
+const saveLic=()=>store.set("rasma_lic",JSON.stringify(LIC));
+const viaWorker=()=>!!String(CFG.licenseApi||"").trim();
+const licensed=()=>!!(LIC&&LIC.inst&&LIC.key&&(Date.now()-(+LIC.ok||0))<GRACE_MS);
+const mine=d=>viaWorker()?!!d:!!(d&&d.meta&&String(d.meta.store_id)===String(CFG.storeId)&&(!CFG.productId||String(d.meta.product_id)===String(CFG.productId)));
+function deviceName(){let d=store.get("rasma_dev");if(!d){d="RASMA-"+(crypto.randomUUID?crypto.randomUUID().slice(0,8):String(Math.random()).slice(2,10));store.set("rasma_dev",d)}return d}
+async function lsCall(ep,fields){
+  const base=viaWorker()?CFG.licenseApi.replace(/\/+$/,"")+"/":LS_API;
+  const r=await fetch(base+ep,{method:"POST",headers:{Accept:"application/json","Content-Type":"application/x-www-form-urlencoded"},body:new URLSearchParams(fields)});
+  return r.json().catch(()=>({}));
+}
+async function activate(key){
+  key=String(key||"").trim();const X=L();
+  if(!key)return X.e_missing_key;
+  if(!CFG.storeId&&!viaWorker())return X.e_cfg;
+  let d;try{d=await lsCall("activate",{license_key:key,instance_name:deviceName()})}catch(e){return X.e_network}
+  if(d.error==="not-this-store")return X.e_other;
+  if(d.activated&&d.instance){
+    if(!mine(d)){try{await lsCall("deactivate",{license_key:key,instance_id:d.instance.id})}catch(e){}return X.e_other}
+    LIC={key,inst:d.instance.id,tail:key.slice(-4),at:Date.now(),ok:Date.now()};saveLic();return null;
+  }
+  const lk=d.license_key||{};if(lk.activation_limit&&lk.activation_usage>=lk.activation_limit)return X.e_device_limit;
+  return X.e_invalid;
+}
+async function deactivate(){
+  if(!LIC)return null;
+  try{const d=await lsCall("deactivate",{license_key:LIC.key,instance_id:LIC.inst});if(d.deactivated===false&&d.error)return L().e_deact+" "+d.error}catch(e){return L().e_network}
+  LIC=null;saveLic();return null;
+}
+async function recheck(force){
+  if(!LIC||!LIC.inst)return;if(!force&&Date.now()-(+LIC.ok||0)<RECHECK_MS)return;
+  const was=licensed();
+  try{const d=await lsCall("validate",{license_key:LIC.key,instance_id:LIC.inst});
+    if(d.valid&&mine(d)){LIC.ok=Date.now();saveLic();if(!was)renderBadge()}
+    else if(d.valid===false){LIC=null;saveLic();renderBadge();$("status").textContent=L().revoked}
+  }catch(e){/* offline: keep working inside the grace period */}
+}
+const openGate=()=>{$("gate").hidden=false;$("gateErr").textContent="";$("dataMsg").textContent="";setTimeout(()=>{const k=$("licKey");if(!licensed()&&k)k.focus()},50)};
+const closeGate=()=>{$("gate").hidden=true};
+$("licBadge").onclick=openGate;$("demoAct").onclick=openGate;$("footData").onclick=openGate;$("gateClose").onclick=closeGate;
+$("gate").addEventListener("click",e=>{if(e.target===$("gate"))closeGate()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeGate()});
+$("gateForm").addEventListener("submit",async e=>{
+  e.preventDefault();$("gateErr").textContent="";$("gateBtn").disabled=true;$("gateBtn").textContent=L().checking;
+  const err=await activate($("licKey").value);
+  $("gateBtn").disabled=false;$("gateBtn").textContent=L().activate;
+  if(err){$("gateErr").textContent=err;return}
+  $("licKey").value="";renderBadge();calc();$("dataMsg").textContent=L().actDone;
+});
+$("deact").onclick=async()=>{$("deact").disabled=true;const err=await deactivate();$("deact").disabled=false;
+  if(err){$("deactErr").textContent=err;return}$("deactErr").textContent="";renderBadge();calc();$("gateErr").textContent="";$("dataMsg").textContent=L().deactDone};
+/* ---------- your data: backup, restore, send to the other device ---------- */
+function snapshot(){const o={app:"rasma",v:1,settings:{},quote:{client:$("client").value,project:$("project").value,tasks,risk,budget:$("budget").value}};SET.forEach(k=>o.settings[k]=$(k).value);return o}
+const bkName=()=>"rasma-backup-"+new Date().toISOString().slice(0,10)+".json";
+const bkBlob=()=>new Blob([JSON.stringify(snapshot())],{type:"application/json"});
+function bkSave(){try{const a=document.createElement("a");a.download=bkName();a.href=URL.createObjectURL(bkBlob());document.body.appendChild(a);a.click();a.remove();return true}catch(e){return false}}
+$("bk").onclick=()=>{$("dataMsg").textContent=bkSave()?L().bkDone:L().bkFail};
+$("send").onclick=async()=>{try{const f=new File([bkBlob()],bkName(),{type:"application/json"});
+  if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],title:"RASMA"});$("dataMsg").textContent=L().sendHint;return}}catch(e){if(e&&e.name==="AbortError")return}
+  $("dataMsg").textContent=bkSave()?L().sendHint:L().bkFail};
+$("rs").onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const d=JSON.parse(r.result);if(d.app!=="rasma"||!d.settings||!d.quote)throw 0;
+  applySnapshot(d);saveAll();$("dataMsg").textContent=L().rsDone}catch(_){$("dataMsg").textContent=L().rsBad}e.target.value=""};r.readAsText(f)};
+
+/* ---------- pricing engine ---------- */
+let tasks=[], risk=0.25, chosen=1, autoPick=true;
+const num=v=>{const n=parseFloat(v);return isFinite(n)&&n>0?n:0};
+const cur=()=>$("currency").value;
+function curShort(){return cur()==="OTHER"?($("curName").value||"").trim():L().cur[cur()][1]}
+function fmt(n){const v=n.toLocaleString("en-US",{minimumFractionDigits:DEC[cur()],maximumFractionDigits:DEC[cur()]}),c=curShort();return c?(lang==="ar"?v+" "+c:(c.length===1?c+v:c+" "+v)):v}
+function nice(n){const step=n<100?5:n<1000?10:n<10000?50:100;return Math.ceil(n/step)*step}
+function loadSample(){const s=L().sample;$("client").value=s.client;$("project").value=s.project;tasks=s.tasks.map(([n,h])=>({n,h}))}
+function isSample(){
+  const s=L().sample; if($("client").value!==s.client||$("project").value!==s.project||tasks.length!==s.tasks.length) return false;
+  return tasks.every((t,i)=>t.n===s.tasks[i][0]&&String(t.h)===String(s.tasks[i][1]));
+}
+function renderTasks(){
+  const box=$("tasks");box.innerHTML="";
+  tasks.forEach((t,i)=>{
+    const r=document.createElement("div");r.className="task";
+    r.innerHTML=`<input id="tn${i}"><input id="th${i}" type="number" min="0" step="0.5"><button class="ghost" type="button"></button>`;
+    box.appendChild(r);
+    const n=r.querySelector("#tn"+i),h=r.querySelector("#th"+i),b=r.querySelector("button");
+    n.value=t.n;h.value=t.h;n.setAttribute("aria-label",L().taskAria+" "+(i+1));h.setAttribute("aria-label",L().hoursAria);b.textContent=L().remove;
+    n.oninput=()=>{t.n=n.value;calc()};h.oninput=()=>{t.h=h.value;calc()};
+    b.onclick=()=>{tasks.splice(i,1);renderTasks();calc()};
+  });
+}
+function compute(){
+  const I=num($("income").value),E=num($("expenses").value),D=num($("days").value)||1,H=num($("hours").value)||1,F=Math.min(num($("fees").value),60);
+  const rate=(I+E)/(D*H)/(1-F/100);
+  const raw=tasks.reduce((s,t)=>s+num(t.h),0), adj=raw*(1+risk);
+  const m=num($("margin").value)/100;
+  const floor=adj*rate, mid=nice(floor*(1+m));
+  const pk=[
+    {f:0.8,price:Math.max(nice(mid*0.72),nice(floor*0.8*1.12)),rev:1,support:0,days:Math.ceil(adj*0.8/H)},
+    {f:1,price:mid,rev:2,support:14,days:Math.ceil(adj/H)},
+    {f:1.15,price:nice(mid*1.6),rev:4,support:30,days:Math.max(1,Math.ceil(adj*0.75/H))}
+  ];
+  return {rate,raw,adj,floor,mid,pk,H,m,extra:nice(rate*(1+m)*2)};
+}
+function verdict(c){
+  const B=num($("budget").value),v=$("verdict"),basic=c.pk[0].price;
+  const show=(cls,t,b)=>{v.className="verdict"+(cls?" "+cls:"");v.innerHTML="<strong><i></i><em style=\"font-style:normal\"></em></strong><span></span>";v.querySelector("i").textContent=cls==="v-good"?"✓":cls==="v-bad"?"×":cls==="v-warn"?"!":"?";v.querySelector("em").textContent=t;v.children[1].textContent=b};
+  const cl=$("client").value||L().clientDefault,mid=c.mid;
+  const rep=(list)=>{const box=$("replies");box.innerHTML="";if(!list.length)return;const h=document.createElement("h3");h.textContent=L().repH;box.appendChild(h);
+    list.forEach(([k,vars])=>{const d=document.createElement("div");d.className="rep";d.innerHTML="<b></b><p></p><button type=\"button\"></button>";const txt=tt(k,vars);d.children[0].textContent=L()[k+"T"];d.children[1].textContent=txt;d.children[2].textContent=L().repCopy;
+      d.children[2].onclick=async()=>{const bt=d.children[2];await copy(licensed()?txt:txt+"\n\n"+L().demoTag,"repCopied");bt.textContent="✓ "+L().repDone;setTimeout(()=>bt.textContent=L().repCopy,1800)};box.appendChild(d)})};
+  rep([]);
+  if(!c.adj){show("v-warn",L().noTasksT,L().noTasksB);return 1}
+  if(!B){show("",L().noBudgetT,L().noBudgetB);rep([["rAsk",{client:cl}]]);return 1}
+  const eff=B/c.adj;
+  if(B>=c.mid){show("v-good",L().goodT,tt("goodB",{r:fmt(eff)}));return B>=c.pk[2].price?2:1}
+  if(B>=c.floor){show("v-warn",L().warnT,tt("warnB",{gap:fmt(c.mid-B),h:((c.mid-B)/(c.rate*(1+c.m))).toFixed(1),basic:fmt(basic)}));rep([["rScope",{b:fmt(B),basic:fmt(basic),mid:fmt(mid)}],["rHold",{mid:fmt(mid)}]]);return 0}
+  show("v-bad",L().badT,tt("badB",{floor:fmt(c.floor),r:fmt(eff),h:(B/c.rate/(1+risk)).toFixed(1)}));rep([["rMini",{b:fmt(B),h:(B/c.rate/(1+risk)).toFixed(1)}],["rNo",{}]]);return 0;
+}
+function addDays(n){const d=new Date();d.setDate(d.getDate()+n);return d.toISOString().slice(0,10)}
+let lastText="",lastWa="",pbHasData=false,pbSeen=false;
+function pbSync(){const b=$("pbar");if(b)b.classList.toggle("off",!pbHasData||pbSeen)}
+function calc(){
+  const c=compute(), X=L();
+  $("minRate").textContent=fmt(c.rate);
+  const sug=verdict(c); if(autoPick) chosen=sug;
+  const box=$("packages");box.innerHTML="";
+  c.pk.forEach((p,i)=>{
+    const b=document.createElement("button");b.type="button";b.className="pkc";b.setAttribute("aria-pressed",i===chosen);
+    b.innerHTML=`<span class="tag"></span><small></small><b></b><ul><li></li><li></li><li></li></ul>`;
+    b.querySelector(".tag").textContent=i===1?X.best:"";b.querySelector("small").textContent=X.pk[i];b.querySelector("b").textContent=fmt(p.price);
+    const li=b.querySelectorAll("li");li[0].textContent=X.note[i];li[1].textContent=X.rev(p.rev);li[2].textContent=p.support?tt("support",{n:p.support}):X.noSupport;
+    b.onclick=()=>{chosen=i;autoPick=false;calc()};box.appendChild(b);
+  });
+  const p=c.pk[chosen], pf=c.floor*p.f, profit=pf?(p.price-pf)/pf:0;
+  $("marginLbl").textContent=(profit*100).toFixed(0)+"%";
+  $("marginBar").style.width=Math.max(0,Math.min(100,profit*100/0.8))+"%";
+  $("marginBar").style.background=profit<0?"var(--bad)":profit<0.15?"var(--warn)":"var(--good)";
+  $("floorLbl").textContent=fmt(pf);$("pbPk").textContent=tt("pbPk",{p:X.pk[chosen],m:(profit*100).toFixed(0)+"%"});$("pbPrice").textContent=fmt(p.price);$("pbGo").textContent=X.pbGo;pbHasData=!!c.adj;pbSync();$("daysLbl").textContent=X.dd(p.days);
+
+  const dep=Math.min(num($("deposit").value),100), depAmt=p.price*dep/100, no="Q-"+new Date().toISOString().slice(2,10).replace(/-/g,"");
+  const names=tasks.filter(t=>t.n.trim()).map(t=>t.n.trim());
+  const project=$("project").value||X.quoteDefault, client=$("client").value||X.clientDefault;
+  const q=$("quote");q.innerHTML="";
+  const head=document.createElement("header");
+  head.innerHTML=`<div><b></b><div class="hint"></div></div><div class="meta"><span dir="ltr"></span><br><span></span> <span dir="ltr"></span></div>`;
+  head.querySelector("b").textContent=project;head.querySelector(".hint").textContent=X.to+" "+client;
+  const ms=head.querySelectorAll(".meta span");ms[0].textContent=no;ms[1].textContent=X.validUntil;ms[2].textContent=addDays(14);
+  q.appendChild(head);
+  const ol=document.createElement("ol");names.forEach(n=>{const li=document.createElement("li");li.textContent=n;ol.appendChild(li)});q.appendChild(ol);
+  [[X.rPackage,X.pk[chosen]],[X.rRev,X.rev(p.rev)],[X.rDays,X.dd(p.days)],[X.rPrice,fmt(p.price)],[tt("rDeposit",{p:dep}),fmt(depAmt)],[X.rRest,fmt(p.price-depAmt)],[X.rExtra,fmt(c.extra)]]
+   .forEach((r,i)=>{const d=document.createElement("div");d.className="qrow"+(i===3?" qtotal":"")+(i===6?" qextra":"");d.innerHTML="<span></span><span></span>";d.children[0].textContent=r[0];d.children[1].textContent=r[1];q.appendChild(d)});
+  const qd={no,project,client,names,pk:X.pk[chosen],rev:X.rev(p.rev),support:p.support?tt("support",{n:p.support}):"",days:X.dd(p.days),price:fmt(p.price),dep,depAmt:fmt(depAmt),rest:fmt(p.price-depAmt),valid:addDays(14),extra:fmt(c.extra)};
+  lastText=X.quoteText(qd);lastWa=X.waText(qd);
+  if(!licensed()){lastText+="\n\n"+X.demoTag;lastWa+="\n\n"+X.demoTag}
+  saveAll();
+}
+async function copy(text,msgKey){
+  try{await navigator.clipboard.writeText(text);$("status").textContent=L()[msgKey]}
+  catch(e){const b=$("copyBuf");b.value=text;b.select();try{document.execCommand("copy");$("status").textContent=L()[msgKey]}catch(_){$("status").textContent=L().copyFail}}
+}
+$("copyQuote").onclick=()=>copy(lastText,"copied");
+$("copyWa").onclick=()=>copy(lastWa,"copiedWa");
+$("pbar").onclick=()=>$("s4").closest("section").scrollIntoView({behavior:"smooth",block:"start"});
+if("IntersectionObserver" in window){const vis=new Set();const io=new IntersectionObserver(es=>{es.forEach(e=>e.isIntersecting?vis.add(e.target):vis.delete(e.target));pbSeen=vis.size>0;pbSync()},{threshold:0.05});io.observe($("s4").closest("section"));io.observe($("s5").closest("section"))}
+$("addTask").onclick=()=>{tasks.push({n:"",h:1});renderTasks();calc();$("tn"+(tasks.length-1)).focus()};
+$("risk").querySelectorAll("button").forEach(b=>b.onclick=()=>{risk=parseFloat(b.dataset.v);$("risk").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b));calc()});
+const SET=["currency","curName","income","expenses","days","hours","fees","margin","deposit"];
+function showCurName(){$("curNameL").hidden=cur()!=="OTHER"}
+function saveAll(){const o=snapshot();store.set("rasma_settings",JSON.stringify(o.settings));if(licensed())store.set("rasma_quote",JSON.stringify(o.quote))}
+function applySnapshot(d){
+  SET.forEach(k=>{if(d.settings&&d.settings[k]!=null)$(k).value=d.settings[k]});showCurName();
+  const q=d.quote;if(q&&Array.isArray(q.tasks)){$("client").value=q.client||"";$("project").value=q.project||"";tasks=q.tasks.map(t=>({n:String(t.n||""),h:t.h}));
+    if(q.risk){risk=+q.risk;$("risk").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",+x.dataset.v===risk))}$("budget").value=q.budget||"";}
+  renderTasks();calc();
+}
+[...SET,"client","project"].forEach(k=>$(k).addEventListener("input",()=>{if(k==="currency")showCurName();calc()}));
+$("budget").addEventListener("input",()=>{autoPick=true;calc()});
+
+async function boot(){
+  try{const r=await fetch("config.json",{cache:"no-store"});if(r.ok)CFG=Object.assign(CFG,await r.json())}catch(e){}
+  loadSample();
+  let st=null,qu=null;try{st=JSON.parse(store.get("rasma_settings")||"null")}catch(e){}try{qu=JSON.parse(store.get("rasma_quote")||"null")}catch(e){}
+  if(st)SET.forEach(k=>{if(st[k]!=null)$(k).value=st[k]});showCurName();
+  applyLang();
+  if(qu&&licensed())applySnapshot({settings:st||{},quote:qu});else{renderTasks();calc()}
+  renderBadge();recheck(false);
+  if("serviceWorker" in navigator&&location.protocol==="https:")navigator.serviceWorker.register("sw.js").catch(()=>{});
+}
+boot();
+</script>
+
+</body>
+</html>
